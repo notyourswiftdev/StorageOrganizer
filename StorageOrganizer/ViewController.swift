@@ -14,7 +14,6 @@ class ViewController: UIViewController {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(systemName: "person")
         return iv
     }()
     
