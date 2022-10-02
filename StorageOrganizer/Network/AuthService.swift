@@ -15,7 +15,6 @@ struct AuthCredentials {
     let email: String
     let password: String
     let fullname: String
-    let username: String
 }
 
 class AuthService {
@@ -32,7 +31,6 @@ class AuthService {
         let email = credentials.email
         let password = credentials.password
         let fullname = credentials.fullname
-        let username = credentials.username
         
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
@@ -41,7 +39,7 @@ class AuthService {
             }
             // uid is what we get back if it successfully gets a user back from the database
             guard let uid = result?.user.uid else { return }
-            let values = ["email": email, "username": username, "fullname": fullname]
+            let values = ["email": email, "fullname": fullname]
 
             // storing the user in firebase database under it's own UID.
             REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)

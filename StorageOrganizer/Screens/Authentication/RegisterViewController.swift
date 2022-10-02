@@ -14,17 +14,6 @@ import FirebaseStorage
 class RegisterViewController: UIViewController {
     
     // MARK: - Properties
-    private let imagePicker = UIImagePickerController()
-    private var profileImage: UIImage?
-    
-    private let addImageButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "plus_photo"), for: .normal)
-        button.tintColor = .white
-        button.addTarget(self, action: #selector(handleAddProfilePhoto), for: .touchUpInside)
-        return button
-    }()
-    
     private lazy var emailContainerView: UIView = {
         let image = #imageLiteral(resourceName: "ic_mail_outline_white_2x-1")
         let view = Utilities().inputContainerView(withImage: image, textField: emailTextField)
@@ -43,12 +32,6 @@ class RegisterViewController: UIViewController {
         return view
     }()
     
-    private lazy var usernameContainerView: UIView = {
-        let image = #imageLiteral(resourceName: "ic_lock_outline_white_2x")
-        let view = Utilities().inputContainerView(withImage: image, textField: usernameTextField)
-        return view
-    }()
-    
     private let emailTextField: UITextField = {
         let tf = Utilities().textField(withPlaceholder: "Email")
         return tf
@@ -62,11 +45,6 @@ class RegisterViewController: UIViewController {
     
     private let fullnameTextField: UITextField = {
         let tf = Utilities().textField(withPlaceholder: "Full Name")
-        return tf
-    }()
-    
-    private let usernameTextField: UITextField = {
-        let tf = Utilities().textField(withPlaceholder: "Username")
         return tf
     }()
     
@@ -100,21 +78,14 @@ class RegisterViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func handleAddProfilePhoto() {
-        print("Add Photo Here")
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
     @objc func handleRegistration() {
         guard let email = emailTextField.text,
             let password = passwordTextField.text,
-            let fullname = fullnameTextField.text,
-            let username = usernameTextField.text else { return }
+            let fullname = fullnameTextField.text else { return }
         
         let credentials = AuthCredentials(email: email,
                                           password: password,
-                                          fullname: fullname,
-                                          username: username)
+                                          fullname: fullname)
         
         AuthService.shared.registerUser(credentials: credentials) { error, ref in
             if let error = error {
@@ -131,31 +102,21 @@ class RegisterViewController: UIViewController {
     
     // MARK: - Helpers
     private func configureUI() {
-        view.backgroundColor = .white
-        
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true
-        
-        
-        view.addSubview(addImageButton)
-        addImageButton.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor)
-        addImageButton.setDimensions(width: 150, height: 150)
+        view.backgroundColor = .darkGray
         
         let stack = UIStackView(arrangedSubviews: [emailContainerView,
                                                    passwordContainerView,
                                                    fullnameContainerView,
-                                                   usernameContainerView,
                                                    registrationButton])
         stack.axis = .vertical
         stack.spacing = 20
         
         view.addSubview(stack)
-        stack.anchor(top: addImageButton.bottomAnchor,
-                     left: view.leftAnchor,
+        stack.anchor(left: view.leftAnchor,
                      right: view.rightAnchor,
-                     paddingTop: 32,
                      paddingLeft: 32,
                      paddingRight: 32)
+        stack.centerY(inView: view)
         
         view.addSubview(alreadyHaveAccountButton)
         alreadyHaveAccountButton.anchor(left: view.leftAnchor,
@@ -164,29 +125,4 @@ class RegisterViewController: UIViewController {
                                      paddingLeft: 40,
                                      paddingRight: 40)
     }
-}
-
-// MARK: - UIImagePickerControllerDelegate
-extension RegisterViewController: UIImagePickerControllerDelegate {
-    // this gives us the ability to access the media we select.
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let profileImage = info[.editedImage] as? UIImage else { return }
-        
-        self.profileImage = profileImage
-        
-        addImageButton.layer.cornerRadius = 150 / 2
-        addImageButton.layer.masksToBounds = true
-        addImageButton.imageView?.contentMode = .scaleAspectFill
-        addImageButton.imageView?.clipsToBounds = true
-        addImageButton.layer.borderColor = UIColor.white.cgColor
-        addImageButton.layer.borderWidth = 3
-        
-        self.addImageButton.setImage(profileImage.withRenderingMode(.alwaysOriginal), for: .normal)
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - UINavigationControllerDelegate
-extension RegisterViewController: UINavigationControllerDelegate {
-    
 }
