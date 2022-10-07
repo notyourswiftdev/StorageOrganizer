@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A99F6F328ECA4F7007A6297 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A99F6F228ECA4F7007A6297 /* ProfileViewController.swift */; };
 		1AB085F628E9474B0099DFBE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AB085F528E9474B0099DFBE /* GoogleService-Info.plist */; };
 		1AB085FA28E948230099DFBE /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1AB085F928E948230099DFBE /* FirebaseAnalytics */; };
 		1AB085FC28E948230099DFBE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1AB085FB28E948230099DFBE /* FirebaseAuth */; };
@@ -75,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A99F6F228ECA4F7007A6297 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = StorageOrganizer/Screens/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		1AB085F528E9474B0099DFBE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1AB0860828E9521A0099DFBE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1AB0860B28E952A20099DFBE /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				1AB0860728E94F150099DFBE /* Authentication */,
+				1A99F6F228ECA4F7007A6297 /* ProfileViewController.swift */,
 				1AB0861728E9566D0099DFBE /* MainTabBarController.swift */,
 				1AB0861B28E956B90099DFBE /* DashboardViewController.swift */,
 				1AB0862128E956D50099DFBE /* NotificationsViewController.swift */,
@@ -441,6 +444,7 @@
 				1AB0860C28E952A20099DFBE /* UIView+Extensions.swift in Sources */,
 				1AB0861C28E956B90099DFBE /* DashboardViewController.swift in Sources */,
 				1AB0862428E9570B0099DFBE /* UserService.swift in Sources */,
+				1A99F6F328ECA4F7007A6297 /* ProfileViewController.swift in Sources */,
 				1AB248CB28E693C100A1C940 /* AppDelegate.swift in Sources */,
 				1AB248CD28E693C100A1C940 /* SceneDelegate.swift in Sources */,
 			);
