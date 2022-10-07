@@ -74,12 +74,15 @@ class MainTabBarController: UITabBarController {
     
     func configureViewControllers() {
         let explore = DashboardViewController()
-        let nav1 = templateNavigationController(image: UIImage(named: "square.dashed"), rootViewController: explore)
+        let nav1 = templateNavigationController(image: UIImage(systemName: "square.dashed"), rootViewController: explore)
         
         let notifications = NotificationsViewController()
         let nav2  = templateNavigationController(image: UIImage(named: "like_unselected"), rootViewController: notifications)
         
-        viewControllers = [nav1, nav2]
+        let profile = ProfileViewController()
+        let nav3 = templateNavigationController(image: UIImage(systemName: "gear"), rootViewController: profile)
+        
+        viewControllers = [nav1, nav2, nav3]
     }
     
     func templateNavigationController(image: UIImage?, rootViewController: UIViewController) -> UINavigationController {
